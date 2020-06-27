@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[200],
+        
         drawer: Drawer(
           child: ListView(
             children: <Widget>[
@@ -67,8 +67,8 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: Text("Connect"),
           elevation: 0,
-        ) // : AppBar(actions: <Widget>[IconButton(onPressed: (){},icon: Icon(Icons.filter_list),)],),
-        ,
+        ) ,// : AppBar(actions: <Widget>[IconButton(onPressed: (){},icon: Icon(Icons.filter_list),)],),
+        
         body: screens[_currentIndex],
         bottomNavigationBar: BottomNavyBar(
           selectedIndex: _currentIndex,

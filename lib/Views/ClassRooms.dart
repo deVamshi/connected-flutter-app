@@ -67,8 +67,7 @@ class ClassRooms extends StatelessWidget {
           SliverAppBar(
             //title: Text("Connect"),
             pinned: false,
-
-            expandedHeight: 200.0,
+            expandedHeight: 180.0,
             flexibleSpace: FlexibleSpaceBar(
               background: Image.asset(
                 'assets/images/wallpaperforapp.jpg',
@@ -76,20 +75,9 @@ class ClassRooms extends StatelessWidget {
               ),
             ),
           ),
-          // SliverGrid(
-          //   gridDelegate:
-          //       SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-          //   delegate:
-          //       SliverChildBuilderDelegate((BuildContext context, int index) {
-          //     return _subjectContainer(
-          //         context,
-          //         _listOfStrings[index],
-          //         _listOfColors[index < _listOfColors.length
-          //             ? index
-          //             : _random.nextInt(_listOfColors.length)]);
-          //   }, childCount: _listOfStrings.length),
-          // ),
-          SliverList(
+          SliverGrid(
+            gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,childAspectRatio: 2),
             delegate:
                 SliverChildBuilderDelegate((BuildContext context, int index) {
               return _subjectContainer(
@@ -99,30 +87,38 @@ class ClassRooms extends StatelessWidget {
                       ? index
                       : _random.nextInt(_listOfColors.length)]);
             }, childCount: _listOfStrings.length),
-          )
+          ),
+          // SliverList(
+          //   delegate:
+          //       SliverChildBuilderDelegate((BuildContext context, int index) {
+          //     return _subjectContainer(
+          //         context,
+          //         _listOfStrings[index],
+          //         _listOfColors[index < _listOfColors.length
+          //             ? index
+          //             : _random.nextInt(_listOfColors.length)]);
+          //   }, childCount: _listOfStrings.length),
+          // )
         ],
       ),
     );
   }
   Widget _subjectContainer(
       BuildContext context, String subjectName, Color color) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.of(context)
+    return Card(
+      margin: EdgeInsets.all(3),
+      color: color,
+      child: InkWell(
+        onTap: (){
+          Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => DetailClassRooms()));
-      },
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 5),
-        height: 110,
-        child: Card(
-          color: color,
-          child: Center(
-            child: Text(
-              subjectName,
-              overflow: TextOverflow.ellipsis,
-              style: GoogleFonts.lato(
-                textStyle: TextStyle(color: Colors.black, letterSpacing: 2),
-              ),
+        },
+              child: Center(
+          child: Text(
+            subjectName,
+            overflow: TextOverflow.ellipsis,
+            style: GoogleFonts.lato(
+              textStyle: TextStyle(color: Colors.black, letterSpacing: 2),
             ),
           ),
         ),

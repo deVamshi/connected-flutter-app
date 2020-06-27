@@ -27,7 +27,7 @@ Widget _NotificationTile(BuildContext context, String matter) {
       height: 200,
       //width: MediaQuery.of(context).size.width,
       child: Card(
-        elevation: 20,
+        elevation: 5,
         child: Padding(
           padding: const EdgeInsets.all(13.0),
           child: Column(
@@ -38,7 +38,7 @@ Widget _NotificationTile(BuildContext context, String matter) {
                 children: <Widget>[
                   CircleAvatar(
                     radius: 20,
-                    backgroundImage: AssetImage("assets/images/sophia.jpg"),
+                    backgroundImage: AssetImage("assets/images/3.jpg"),
                   ),
                   SizedBox(
                     width: 12,
