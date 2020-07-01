@@ -2,6 +2,7 @@ import 'package:Connected/Views/EditProfileScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:store_redirect/store_redirect.dart';
 //import 'package:dropdown_formfield/dropdown_formfield.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -17,14 +18,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String branch = "ECE";
   String year = "1";
   String section = "D";
-  String avatarPath = "assets/images/1.jpg";
-
-  String collegeSelected;
-  String branchSelected;
-  String sectionSelected;
-  bool isButtonVisible = false;
-  ScrollController controller = ScrollController();
-  TextEditingController _textEditingController = TextEditingController();
+  String avatarPath = "assets/images/5.jpg";
+  // String collegeSelected;
+  // String branchSelected;
+  // String sectionSelected;
+  //bool isButtonVisible = false;
+  //ScrollController controller = ScrollController();
+  //TextEditingController _textEditingController = TextEditingController();
   //String _currentSelectedValue = "";
   var _currencies = [
     "Food",
@@ -36,308 +36,462 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var profileInfo = Expanded(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        //crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            height: 110,
-            width: 110,
-            child: Stack(
-              children: <Widget>[
-                CircleAvatar(
-                  radius: 60,
-                  backgroundImage: AssetImage('$avatarPath'),
-                ),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: Container(
-                    height: 30,
-                    width: 30,
-                    decoration: BoxDecoration(
-                      color: Colors.amber,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Center(
-                      // heightFactor: 100,
-                      // widthFactor: 15,
-                      child: IconButton(
-                        onPressed: () {
-                          _neverSatisfied();
-                        },
-                        icon: Icon(LineAwesomeIcons.pen),
-                        color: Colors.black,
-                        iconSize: 15,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+    // var profileInfo = Container(
+    //   color: Color(0xffdde7ee),
+    //   height: 130,
+    //   width: MediaQuery.of(context).size.width,
+
+    //   child: Row(
+    //     mainAxisAlignment: MainAxisAlignment.start,
+    //     crossAxisAlignment: CrossAxisAlignment.center,
+    //      children: <Widget>[
+    //       Padding(
+    //         padding: const EdgeInsets.all(8.0),
+    //         child: CircleAvatar(
+    //           radius: 60,
+    //           backgroundColor: Colors.black,
+    //           child: CircleAvatar(
+    //             radius: 55,
+    //             backgroundImage: AssetImage('$avatarPath'),
+    //           ),
+    //         ),
+    //       ),
+    //     // SizedBox(height: 10),
+    //       // Text(
+    //       //       '$username',
+    //       //       style: TextStyle(
+    //       //           fontSize: 20, fontWeight: FontWeight.w600), //kTitleTextStyle,
+    //       //     ),
+    //       // Column(
+    //       //   crossAxisAlignment: CrossAxisAlignment.start,
+    //       //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //       //   children: <Widget>[
+    //       //     Text(
+    //       //       '$username',
+    //       //       style: TextStyle(
+    //       //           fontSize: 20, fontWeight: FontWeight.w600), //kTitleTextStyle,
+    //       //     ),
+    //       //       Text(
+    //       //   '$rollNumber',
+    //       //   style: TextStyle(
+    //       //       fontSize: 15, fontWeight: FontWeight.w600), //kCaptionTextStyle,
+    //       // ),
+    //       //   ],
+    //       // ),
+    //      // SizedBox(height: 5),
+    //       Text(
+    //         '$username',
+    //         style: TextStyle(
+    //             fontSize: 15, fontWeight: FontWeight.w600), //kCaptionTextStyle,
+    //       ),
+    //     // SizedBox(height: 10)
+    //     ],
+    //   ),
+    // );
+    // var header = Row(
+    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //   crossAxisAlignment: CrossAxisAlignment.center,
+    //   children: <Widget>[
+    //    // profileInfo,
+    //   ],
+    // );
+    var avatar = Container(
+      //color: Color(0xffdde7ee),
+      height: 130,
+
+      // margin: EdgeInsets.only(right: 15),
+      //color: Colors.red,
+      // decoration: BoxDecoration(border: Border.all()),
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          child: CircleAvatar(
+            radius: 51,
+            backgroundColor: Color(0xff2b2f77),
+            child: InkWell(
+              onTap: () {
+                _neverSatisfied();
+              },
+              child: CircleAvatar(
+                radius: 50,
+                backgroundImage: AssetImage(avatarPath),
+              ),
             ),
           ),
-          SizedBox(height: 10),
-          Text(
-            '$username',
-            style: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.w600), //kTitleTextStyle,
-          ),
-          SizedBox(height: 5),
-          Text(
-            '$rollNumber',
-            style: TextStyle(
-                fontSize: 15, fontWeight: FontWeight.w600), //kCaptionTextStyle,
-          ),
-          SizedBox(height: 10),
-        ],
+        ),
       ),
     );
-    var header = Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        profileInfo,
-      ],
-    );
-
     return Scaffold(
-      backgroundColor: Colors.grey[100],
-      body: ListView(
-        controller: controller,
-        children: <Widget>[
-          //TextFormField(),
-          // TextShowWidget("$username", Icons.face, "username"),
-          // TextShowWidget("$rollNumber", LineAwesomeIcons.identification_card,
-          //     "rollNumber"),
-          // TextShowWidget("$institute", LineAwesomeIcons.school, "institute"),
-          // TextShowWidget("$stream", LineAwesomeIcons.stream,
-          //     "rollNumber"),
-          // TextShowWidget("$branch", LineAwesomeIcons.code_branch,
-          //     "rollNumber"),
-          // TextShowWidget("$year", LineAwesomeIcons.vector_square,
-          //     "rollNumber"),
-          // TextShowWidget("$section", LineAwesomeIcons.sketch,
-          //     "rollNumber"),
-          SizedBox(
-            height: 20,
-          ),
-          header,
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+       // elevation: 0,
+        title: Text("My Profile",),
+        backgroundColor: Color(0xff2b2f77),
+        actions: <Widget>[
+          
+          PopupMenuButton(
+            //color: Color(0xff2b2f77),
+            itemBuilder: (BuildContext context) {
+              return [
+                //   PopupMenuItem(child:  ListTile(
 
-          // customListViewForProfile(
-          //   "Name",
-          //   username,
-          // ),
-          // customListViewForProfile(
-          //   "Roll Number",
-          //   rollNumber,
-          // ),
+                //   onTap: () {
+                //     StoreRedirect.redirect(
+                //         androidAppId: "com.btechbuddy.notemaster");
+                //   },
+                //  // leading: Icon(LineAwesomeIcons.google_play),
+                //   title: Text("Rate On Playstore"),
+                // ),),
+                PopupMenuItem(
+                  child: GestureDetector(
+                    onTap: () {
+                          StoreRedirect.redirect(
+                              androidAppId: "com.btechbuddy.notemaster");
+                        },
+                    child: Text("Rate On Playstore"),
+                  ),
+                ),
+                PopupMenuItem(child: Text("Feed Back")),
+                PopupMenuItem(child: Text("Invite a friend"))
+              ];
+            },
+          )
+        ],
+      ),
+      //Color(0xffdde7ee),
+      //drawer: Drawer(),
+
+      //appBar:
+      //  AppBar(
+      //   elevation: 0,
+      //   title: Text("Connect"),
+      // ),
+
+      // backgroundColor: Color(0xff81a5ba),
+      body: ListView(
+        children: <Widget>[
+          avatar,
+          // Divider(color: Colors.white,),
+          customListViewForProfile("Name", username, LineAwesomeIcons.user),
+
+          // Divider(color: Colors.white,),
+          // Divider(color: Colors.blueGrey,),
+          // customListViewForProfile("Name", username),
+          // customListViewForProfile("Roll Number", rollNumber),
           customListViewForProfile(
-            "Institute",
-            institute,
-          ),
+              "Roll Number", rollNumber, LineAwesomeIcons.identification_badge),
+          // Divider(color: Colors.white,),
+
+          // Divider(color: Colors.blueGrey,),
           customListViewForProfile(
-            "Stream",
-            stream,
-          ),
+              "Institute", institute, LineAwesomeIcons.graduation_cap),
+          // Divider(color: Colors.blueGrey,height: 0,),
           // customListViewForProfile(
-          //   "Branch",
-          //   branch,
+          //   "Stream",
+          //   stream,
           // ),
-          // customListViewForProfile("Year", year),
-          // customListViewForProfile("Section", section)
-          // ,
+          // Divider(color: Colors.blueGrey,),
           Container(
-            height: 80,
+            height: 70,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Expanded(
                   flex: 1,
                   child: customListViewForProfile(
-                    "Branch",
-                    branch,
-                  ),
+                      "Stream", stream, LineAwesomeIcons.drafting_compass),
                 ),
-                Expanded(
-                    flex: 1, child: customListViewForProfile("Year", year)),
+                //Divider(color: Colors.blueGrey,height: 2,),
                 Expanded(
                     flex: 1,
-                    child: customListViewForProfile("Section", section))
+                    child: customListViewForProfile(
+                        "Year", year, LineAwesomeIcons.dice_d6)),
               ],
             ),
-          )
+          ),
+          Container(
+            height: 70,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: customListViewForProfile(
+                      "Branch", branch, LineAwesomeIcons.atom),
+                ),
+                //Divider(color: Colors.blueGrey,height: 2,),
 
-          // Container(
-          //     height: 35,
-          //     margin: EdgeInsets.symmetric(horizontal: 60),
-          //     child: isButtonVisible
-          //         ? RaisedButton(
-          //             child: Text(
-          //               "Save",
-          //               style: TextStyle(color: Colors.white),
-          //             ),
-          //             onPressed: () {
-          //               print("presed");
-          //               Scaffold.of(context).showSnackBar(SnackBar(
-          //                 content: Text('Changes saved succesfully!'),
-          //                 action: SnackBarAction(
-          //                   label: 'Ok',
-          //                   onPressed: () {
-          //                     // Some code to undo the change.
-          //                   },
-          //                 ),
-          //               ));
-          //               setState(() {
-          //                 isButtonVisible = false;
-          //               });
-          //             },
-          //             color: Colors.blueGrey,
-          //           )
-          //         : SizedBox()),
-          // SizedBox(
-          //   height: 20,
-          // ), // Container(color: Colors.red,)
+                Expanded(
+                    flex: 1,
+                    child: customListViewForProfile(
+                        "Section", section, LineAwesomeIcons.stream))
+              ],
+            ),
+          ),
         ],
       ),
+
+      // CustomScrollView(
+      //   slivers: <Widget>[
+      //     SliverAppBar(
+      //       backgroundColor: Color(0xff2b2f77),
+      //       title: Text("My Profile"),
+      //       // actions: <Widget>[
+      //       //    Drawer(),
+      //       // ],
+
+      //       // pinned: true,
+      //       // expandedHeight: 200.0,
+      //       // title: Text("My Profile"),
+      //       // flexibleSpace: FlexibleSpaceBar(
+
+      //       //   background: Column(children: <Widget>[
+      //       //     SizedBox(height: 50,),
+      //       //     avatar,
+
+      //       //     Text(username)
+      //       //   ],),
+      //       //   // Image.asset(
+      //       //   //   'assets/images/vectorr.jpg',
+      //       //   //   fit: BoxFit.fill,
+      //       //   // ),
+      //       // ),
+      //     ),
+      //     SliverList(
+      //       delegate: SliverChildListDelegate([
+      //         // Container(height: 150,child: Row(
+      //         //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //         //   children: <Widget>[
+      //         //     Column(
+      //         //       crossAxisAlignment: CrossAxisAlignment.start,
+      //         //       children: <Widget>[
+      //         //        Expanded(child: customListViewForProfile("Name", username)),
+      //         //        Expanded(child: customListViewForProfile("Roll Number", rollNumber)),
+
+      //         //     ],),
+
+      //         //   avatar,
+      //         // //  SizedBox(width: 3,)
+
+      //         // ],),),
+      //         avatar,
+      //         // Divider(color: Colors.white,),
+      //         customListViewForProfile("Name", username, LineAwesomeIcons.user),
+
+      //         // Divider(color: Colors.white,),
+      //         // Divider(color: Colors.blueGrey,),
+      //         // customListViewForProfile("Name", username),
+      //         // customListViewForProfile("Roll Number", rollNumber),
+      //         customListViewForProfile("Roll Number", rollNumber,
+      //             LineAwesomeIcons.identification_badge),
+      //         // Divider(color: Colors.white,),
+
+      //         // Divider(color: Colors.blueGrey,),
+      //         customListViewForProfile(
+      //             "Institute", institute, LineAwesomeIcons.graduation_cap),
+      //         // Divider(color: Colors.blueGrey,height: 0,),
+      //         // customListViewForProfile(
+      //         //   "Stream",
+      //         //   stream,
+      //         // ),
+      //         // Divider(color: Colors.blueGrey,),
+      //         Container(
+      //           height: 70,
+      //           child: Row(
+      //             mainAxisAlignment: MainAxisAlignment.start,
+      //             children: <Widget>[
+      //               Expanded(
+      //                 flex: 1,
+      //                 child: customListViewForProfile(
+      //                     "Stream", stream, LineAwesomeIcons.drafting_compass),
+      //               ),
+      //               //Divider(color: Colors.blueGrey,height: 2,),
+      //               Expanded(
+      //                   flex: 1,
+      //                   child: customListViewForProfile(
+      //                       "Year", year, LineAwesomeIcons.dice_d6)),
+      //             ],
+      //           ),
+      //         ),
+      //         Container(
+      //           height: 70,
+      //           child: Row(
+      //             mainAxisAlignment: MainAxisAlignment.start,
+      //             children: <Widget>[
+      //               Expanded(
+      //                 flex: 1,
+      //                 child: customListViewForProfile(
+      //                     "Branch", branch, LineAwesomeIcons.atom),
+      //               ),
+      //               //Divider(color: Colors.blueGrey,height: 2,),
+
+      //               Expanded(
+      //                   flex: 1,
+      //                   child: customListViewForProfile(
+      //                       "Section", section, LineAwesomeIcons.stream))
+      //             ],
+      //           ),
+      //         ),
+      //       ]),
+      //       //     SliverChildBuilderDelegate((BuildContext context, int index) {
+      //       //   return customListViewForProfile("Name", username);
+      //       // }, childCount: 6),
+      //     )
+      //   ],
+      // ),
+      // drawer: Drawer(
+      //   child: ListView(
+      //     children: <Widget>[
+      //       Container(
+      //           height: 150,
+      //           decoration: BoxDecoration(
+      //               image: DecorationImage(
+      //                   image: AssetImage("assets/images/mountain.jpg"),
+      //                   fit: BoxFit.cover))),
+      //       ListTile(
+      //         onTap: () {
+      //           StoreRedirect.redirect(
+      //               androidAppId: "com.btechbuddy.notemaster");
+      //         },
+      //         leading: Icon(LineAwesomeIcons.google_play),
+      //         title: Text("Rate On Playstore"),
+      //       ),
+      //       ListTile(
+      //         leading: Icon(Icons.feedback),
+      //         title: Text("Feedback"),
+      //       ),
+      //       ListTile(
+      //         leading: Icon(LineAwesomeIcons.user_plus),
+      //         title: Text("Invite a Friend"),
+      //       ),
+      //       ListTile(
+      //         leading: Icon(LineAwesomeIcons.alternate_sign_out),
+      //         title: Text("Log Out"),
+      //       ),
+      //     ],
+      //   ),
+      // ),
+
+      //  ListView(
+      //   children: <Widget>[
+      //     // SizedBox(
+      //     //   height: 20,
+      //     // ),
+      //     // header,
+
+      //     avatar,
+      //   //  Divider(
+      //      // color: Colors.blueGrey,
+      //     //),
+
+      //   customListViewForProfile("Name", username),
+      //  // Divider(color: Colors.blueGrey,),
+      //   // customListViewForProfile("Name", username),
+      //   // customListViewForProfile("Roll Number", rollNumber),
+      //   customListViewForProfile("Roll Number", rollNumber),
+      //  // Divider(color: Colors.blueGrey,),
+      //   customListViewForProfile(
+      //     "Institute",
+      //     institute,
+      //   ),
+      //  // Divider(color: Colors.blueGrey,height: 0,),
+      //   customListViewForProfile(
+      //     "Stream",
+      //     stream,
+      //   ),
+      //  // Divider(color: Colors.blueGrey,),
+      //   Container(
+      //     height: 80,
+      //     child: Row(
+      //       mainAxisAlignment: MainAxisAlignment.start,
+      //       children: <Widget>[
+      //         Expanded(
+      //           flex: 1,
+      //           child: customListViewForProfile(
+      //             "Branch",
+      //             branch,
+      //           ),
+
+      //         ),
+      //         //Divider(color: Colors.blueGrey,height: 2,),
+      //         Expanded(
+      //             flex: 1, child: customListViewForProfile("Year", year)),
+      //         Expanded(
+      //             flex: 1,
+      //             child: customListViewForProfile("Section", section))
+      //       ],
+      //     ),
+      //     )
+      //   ],
+      // ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
               MaterialPageRoute(builder: (context) => EditProfileScreen()));
         },
-        child: Icon(LineAwesomeIcons.pen),
-        backgroundColor: Colors.blueGrey,
+        child: Icon(
+          LineAwesomeIcons.pen,
+          color: Color(0xffdde7ee),
+        ),
+        backgroundColor: Color(0xff2b2f77),
       ),
     );
   }
 
-  // Widget TextShowWidget(String text, IconData icon, String valueToBeChanged) {
-  //   return Container(
-  //       //color: Colors.blueGrey,
-  //       // width: MediaQuery.of(context).size.width,
-  //       //decoration: BoxDecoration(border: Border.all()),
-  //       height: 50, //kSpacingUnit.w * 5.5,
-  //       padding: EdgeInsets.symmetric(horizontal: 21 //kSpacingUnit.w * 2,
-  //           ),
-  //       child: Row(children: <Widget>[
-  //         Icon(icon, size: 27 // kSpacingUnit.w * 2.5,
-  //             ),
-  //         SizedBox(width: 16), //kSpacingUnit.w * 1.5),
-  //         Text(text,
-  //             style: TextStyle(
-  //                 fontSize: 19,
-  //                 fontWeight: FontWeight.w600) // kTitleTextStyle.copyWith(
-  //             ),
-  //         Spacer(),
-  //         IconButton(
-  //           icon: Icon(LineAwesomeIcons.pen),
-  //           iconSize: 20,
-  //           onPressed: () {
-  //             _displayDialog(valueToBeChanged);
-  //           },
-  //         )
-  //       ]));
-  // }
-
   Widget customListViewForProfile(
-    String heading,
-    String valuevalue,
-  ) {
+      String heading, String valuevalue, IconData iconData) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 11, vertical: 5),
       // color: Colors.blueGrey,
+      // color: Colors.grey,
 
-      margin: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
-      height: 75,
+      // margin: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+      height: 65,
       // width: double.infinity,
-      decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(2)),
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              "$heading",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueGrey,
-                  fontSize: 13),
-            ),
-            Container(
-              // decoration: BoxDecoration(border: Border(top: BorderSide(color: Colors.grey,),),),
-              padding: EdgeInsets.symmetric(vertical: 5),
-              height: 35,
-              //  width: double.infinity,
-
-              child: Text(valuevalue,
-                  style: GoogleFonts.lato(
-                    textStyle: TextStyle(
-                      fontSize: 20,
-                    ),
-                  )
-                  // DropdownButtonFormField(
-                  //     isExpanded: true,
-                  //     items: _currencies.map((String value) {
-                  //       return DropdownMenuItem(value: value, child: Text(value));
-                  //     }).toList(),
-                  //     onChanged: (newValue) {
-                  //       // do other stuff with _category
-                  //       setState(() {
-                  //         collegeSelected = newValue;
-                  //         valuevalue = newValue;
-                  //         isButtonVisible = true;
-                  //         controller.jumpTo(controller.position.maxScrollExtent);
-                  //       });
-                  //     },
-                  //     value: valuevalue,
-                  //     decoration: InputDecoration(
-                  //       contentPadding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-                  //       filled: true,
-                  //       fillColor: Colors.grey[200],
-                  //       hintText: "Select your college",
-                  //       //errorText: errorSnapshot.data == 0 ? Localization.of(context).categoryEmpty : null),
-                  //     )),
+      // decoration: BoxDecoration(
+      // color: Color(0xffdde7ee),
+      // borderRadius: BorderRadius.circular(2)),
+      child: Row(
+        // crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Icon(
+            iconData,
+            size: 28,
+          ),
+          SizedBox(
+            width: 15,
+          ),
+          Expanded(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "$heading",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                        //Color(0xff2b2f77),
+                        fontSize: 13),
                   ),
-            )
-          ]),
+                  Container(
+                    // decoration: BoxDecoration(border: Border(top: BorderSide(color: Colors.grey,),),),
+                    padding: EdgeInsets.symmetric(vertical: 5),
+                    height: 35,
+                    //  width: double.infinity,
+
+                    child: Text(valuevalue,
+                        style: GoogleFonts.lato(
+                          textStyle:
+                              TextStyle(fontSize: 18, color: Color(0xff2b2f77)),
+                        )),
+                  )
+                ]),
+          ),
+        ],
+      ),
     );
   }
-
-//   _displayDialog(String valueToChange) async {
-//     return showDialog(
-//         context: context,
-//         builder: (context) {
-//           return AlertDialog(
-//             //title: Text("Edit"),
-//             content: TextField(
-//               controller: _textEditingController,
-//               decoration: InputDecoration(hintText: "Ex: Sneha"),
-//             ),
-//             actions: <Widget>[
-//               new FlatButton(
-//                 child: new Text('CANCEL'),
-//                 onPressed: () {
-//                   Navigator.of(context).pop();
-//                 },
-//               ),
-//               new FlatButton(
-//                 child: new Text('Save'),
-//                 onPressed: () {
-//                   print(valueToChange);
-//                   Navigator.of(context).pop();
-//                   setState(() {
-//                     if (valueToChange == "username") {
-//                       username = _textEditingController.text;
-//                     } else {
-//                       rollNumber = _textEditingController.text;
-//                     }
-//                   });
-//                 },
-//               )
-//             ],
-//           );
-//         });
-//   }
-// }
 
   Future<Null> _neverSatisfied() async {
     return showDialog<Null>(
@@ -353,46 +507,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             content: new Container(
               // Specify some width
-              height: 180,
+              height: MediaQuery.of(context).size.width * 0.8,
+              width: MediaQuery.of(context).size.width * 0.7,
               //width: MediaQuery.of(context).size.width ,
               child: new GridView.count(
-                  crossAxisCount: 3,
+                  crossAxisCount: 2,
                   childAspectRatio: 1,
                   // padding: const EdgeInsets.all(4.0),
                   mainAxisSpacing: 10.0,
                   crossAxisSpacing: 4.0,
                   children: <String>[
-                    // 'assets/images/1.jpg',
-                    // 'assets/images/2.jpg',
-                    // 'assets/images/3.jpg',
-                    // 'assets/images/4.jpg',
-                    // 'assets/images/5.jpg',
-                    //'assets/images/6.jpg',
-                    //'assets/images/7.jpg',
-                   // 'assets/images/8.jpg',
-                    // 'assets/images/9.jpg',
-                    // 'assets/images/11.jpg',
-                    // 'assets/images/12.jpg',
-                    // 'assets/images/13.jpg',
-                    // 'assets/images/14.jpg',
-                    // 'assets/images/15.jpg',
-                    // 'assets/images/16.jpg',
-                    // 'assets/images/17.jpg',
-                    'assets/images/21.jpg',
-                    'assets/images/22.jpg',
-                    'assets/images/23.jpg',
-                    'assets/images/29.jpg',
-                    'assets/images/24.jpg',
-                    'assets/images/25.jpg',
-                    'assets/images/26.jpg',
-                    'assets/images/27.jpg',
-                    'assets/images/28.jpg',
-                    // 'assets/images/18.jpg',
+                    'assets/images/18.jpg',
+                    'assets/images/11.jpg',
+                    'assets/images/17.jpg',
+                    'assets/images/12.jpg',
+                    'assets/images/13.jpg',
+                    'assets/images/14.jpg',
+                    'assets/images/15.jpg',
+                    'assets/images/16.jpg',
+                    //'assets/images/e1.jpg',
+
                     // 'assets/images/31.jpg',
-                    // 'assets/images/32.jpg',
-                    // 'assets/images/33.jpg',
-                    // 'assets/images/34.jpg',
-                    // 'assets/images/35.jpg',
                     // 'assets/images/36.jpg',
                   ].map((String path) {
                     return GridTile(

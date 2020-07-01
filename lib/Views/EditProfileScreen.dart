@@ -14,9 +14,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   String collegeSelected;
   String branchSelected;
   String sectionSelected;
-  bool isButtonVisible = false;
+  //bool isButtonVisible = false;
   ScrollController controller = ScrollController();
-  TextEditingController _textEditingController = TextEditingController();
+  TextEditingController _nameTextEditingController = TextEditingController();
+  TextEditingController _rollNumberTextEditingController =
+      TextEditingController();
   //String _currentSelectedValue = "";
   var _currencies = [
     "Food",
@@ -89,12 +91,65 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     // );
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Edit Details"),
+        actions: <Widget>[
+          GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Container(
+              margin: EdgeInsets.all(15),
+              width: 65,
+              // height: 20,
+              //height: 10,
+              color: Color(0xffdde7ee),
+              child: Center(
+                child: Text(
+                  "Save",
+                  style: TextStyle(color: Color(0xff2b2f77)),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
       body: ListView(
         controller: controller,
         children: <Widget>[
           //TextFormField(),
-          TextShowWidget("$username", Icons.face,"username"),
-          TextShowWidget("$rollNumber", LineAwesomeIcons.identification_card,"rollNumber"),
+          // TextShowWidget("$username", Icons.face,"username"),
+          // TextShowWidget("$rollNumber", LineAwesomeIcons.identification_card,"rollNumber"),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 21),
+            child: TextField(
+              onSubmitted: (newName) {
+                print(newName);
+                controller.jumpTo(
+                  controller.position.maxScrollExtent,
+                );
+              },
+              decoration: InputDecoration(
+                  hintText: "User Name",
+                  hintStyle: TextStyle(color: Colors.grey)),
+              controller: _nameTextEditingController,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 21),
+            child: TextField(
+              decoration: InputDecoration(
+                  hintText: "Roll Number",
+                  hintStyle: TextStyle(color: Colors.grey)),
+              controller: _rollNumberTextEditingController,
+            ),
+          ),
+          SizedBox(
+            height: 5,
+          ),
 
           customListViewForProfile(
             "Institute",
@@ -120,62 +175,65 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             height: 10,
           ),
 
-          Container(
-              height: 35,
-              margin: EdgeInsets.symmetric(horizontal: 60),
-              child: isButtonVisible
-                  ? RaisedButton(
-                      child: Text(
-                        "Save",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      onPressed: () {
-                        print("presed");
-                        Scaffold.of(context).showSnackBar(SnackBar(
-                          content: Text('Changes saved succesfully!'),
-                          action: SnackBarAction(
-                            label: 'Ok',
-                            onPressed: () {
-                              // Some code to undo the change.
-                            },
-                          ),
-                        ));
-                        setState(() {
-                          isButtonVisible = false;
-                        });
-                      },
-                      color: Colors.blueGrey,
-                    )
-                  : SizedBox()),
-          SizedBox(
-            height: 20,
-          ), // Container(color: Colors.red,)
+          // Container(
+          //     height: 35,
+          //     margin: EdgeInsets.symmetric(horizontal: 60),
+          //     child:
+          //         //  isButtonVisible
+          //         //     ?
+          //         RaisedButton(
+          //       child: Text(
+          //         "Save",
+          //         style: TextStyle(color: Colors.white),
+          //       ),
+          //       onPressed: () {
+          //         print("presed");
+          //         // Scaffold.of(context).showSnackBar(SnackBar(
+          //         //   content: Text('Changes saved succesfully!'),
+          //         //   action: SnackBarAction(
+          //         //     label: 'Ok',
+          //         //     onPressed: () {
+          //         //       // Some code to undo the change.
+          //         //     },
+          //         //   ),
+          //         // ));
+          //         // setState(() {
+          //         //   isButtonVisible = false;
+          //         // });
+          //       },
+          //       color: Colors.blueGrey,
+          //     )
+          //     //: SizedBox()
+          //     ),
+          // SizedBox(
+          //   height: 20,
+          //), // Container(color: Colors.red,)
         ],
       ),
     );
   }
 
-  Widget TextShowWidget(String text, IconData icon,String valueToBeChanged) {
-    return Container(
-      //color: Colors.blueGrey,
-     // width: MediaQuery.of(context).size.width,
-        //decoration: BoxDecoration(border: Border.all()),
-        height: 50, //kSpacingUnit.w * 5.5,
-        padding: EdgeInsets.symmetric(horizontal: 21 //kSpacingUnit.w * 2,
-            ),
-        child: Row(children: <Widget>[
-          Icon(icon, size: 27 // kSpacingUnit.w * 2.5,
-              ),
-          SizedBox(width: 16), //kSpacingUnit.w * 1.5),
-          Text(text,
-              style: TextStyle(
-                  fontSize: 19,
-                  fontWeight: FontWeight.w600) // kTitleTextStyle.copyWith(
-              ),
-              Spacer(),
-              IconButton(icon:Icon( LineAwesomeIcons.pen),iconSize: 20,onPressed: (){_displayDialog(valueToBeChanged);},)
-        ]));
-  }
+  // Widget TextShowWidget(String text, IconData icon,String valueToBeChanged) {
+  //   return Container(
+  //     //color: Colors.blueGrey,
+  //    // width: MediaQuery.of(context).size.width,
+  //       //decoration: BoxDecoration(border: Border.all()),
+  //       height: 50, //kSpacingUnit.w * 5.5,
+  //       padding: EdgeInsets.symmetric(horizontal: 21 //kSpacingUnit.w * 2,
+  //           ),
+  //       child: Row(children: <Widget>[
+  //         Icon(icon, size: 27 // kSpacingUnit.w * 2.5,
+  //             ),
+  //         SizedBox(width: 16), //kSpacingUnit.w * 1.5),
+  //         Text(text,
+  //             style: TextStyle(
+  //                 fontSize: 19,
+  //                 fontWeight: FontWeight.w600) // kTitleTextStyle.copyWith(
+  //             ),
+  //             Spacer(),
+  //             IconButton(icon:Icon( LineAwesomeIcons.pen),iconSize: 20,onPressed: (){_displayDialog(valueToBeChanged);},)
+  //       ]));
+  // }
 
   Widget customListViewForProfile(
     String heading,
@@ -209,7 +267,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 setState(() {
                   collegeSelected = newValue;
                   valuevalue = newValue;
-                  isButtonVisible = true;
+                  //isButtonVisible = true;
                   controller.jumpTo(controller.position.maxScrollExtent);
                 });
               },
@@ -226,42 +284,42 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     );
   }
 
-  _displayDialog(String valueToChange) async {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            //title: Text("Edit"),
-            content: TextField(
-              controller: _textEditingController,
-              decoration: InputDecoration(hintText: "Ex: Sneha"),
-            ),
-            actions: <Widget>[
-              new FlatButton(
-                child: new Text('CANCEL'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              new FlatButton(
-                child: new Text('Save'),
-                onPressed: () {
-                  print(valueToChange);
-                  Navigator.of(context).pop();
-                  setState(() {
-                    if(valueToChange == "username"){
-                      username = _textEditingController.text;
+  // _displayDialog(String valueToChange) async {
+  //   return showDialog(
+  //       context: context,
+  //       builder: (context) {
+  //         return AlertDialog(
+  //           //title: Text("Edit"),
+  //           content: TextField(
+  //             controller: _textEditingController,
+  //             decoration: InputDecoration(hintText: "Ex: Sneha"),
+  //           ),
+  //           actions: <Widget>[
+  //             new FlatButton(
+  //               child: new Text('CANCEL'),
+  //               onPressed: () {
+  //                 Navigator.of(context).pop();
+  //               },
+  //             ),
+  //             new FlatButton(
+  //               child: new Text('Save'),
+  //               onPressed: () {
+  //                 print(valueToChange);
+  //                 Navigator.of(context).pop();
+  //                 setState(() {
+  //                   if(valueToChange == "username"){
+  //                     username = _textEditingController.text;
 
-                    } else{
-                      rollNumber = _textEditingController.text;
-                      
-                    }
-                    
-                  });
-                },
-              )
-            ],
-          );
-        });
-  }
+  //                   } else{
+  //                     rollNumber = _textEditingController.text;
+
+  //                   }
+
+  //                 });
+  //               },
+  //             )
+  //           ],
+  //         );
+  //       });
+  // }
 }

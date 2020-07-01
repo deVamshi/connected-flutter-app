@@ -1,5 +1,10 @@
+import 'package:Connected/Views/DetailNotificationPage.dart';
+import 'package:Connected/Views/HomePage.dart';
+import 'package:Connected/Views/staticFields.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+
 
 class Notifications extends StatelessWidget {
   String sampleText =
@@ -7,27 +12,55 @@ class Notifications extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: 6,
-        itemBuilder: (context, index) {
-          return _NotificationTile(context, sampleText);
-        });
+    return Scaffold(
+      backgroundColor: Color(0xff2b2f77),
+          body: CustomScrollView(
+          controller: staticFields.barController2,
+        slivers: <Widget>[
+          SliverAppBar(
+            pinned: false,
+            title: Text("Notifications"),
+          ),
+           SliverList(
+             
+              delegate:
+                  SliverChildBuilderDelegate((BuildContext context, int index) {
+                return _NotificationTile(context, sampleText);
+              }, childCount: 6),
+            )
+        ],
+      ),
+    );
+
+    
+    // ListView.builder(
+    //     itemCount: 6,
+    //     itemBuilder: (context, index) {
+    //       return _NotificationTile(context, sampleText);
+    //     });
   }
 }
 
 Widget _NotificationTile(BuildContext context, String matter) {
-  return GestureDetector(
-    onTap: () {},
-    child: Container(
-      margin: EdgeInsets.only(left: 10, right: 10),
-      // decoration: BoxDecoration(
-      //     color: Colors.transparent,
-      //     border: Border(bottom: BorderSide(color: Colors.grey))),
-      // // margin: EdgeInsets.only(left: 5, right: 5, top: 5),
-      height: 200,
-      //width: MediaQuery.of(context).size.width,
-      child: Card(
-        elevation: 5,
+  return Container(
+    margin: EdgeInsets.only(left: 10, right: 10),
+    // decoration: BoxDecoration(
+    //     color: Colors.transparent,
+    //     border: Border(bottom: BorderSide(color: Colors.grey))),
+    // // margin: EdgeInsets.only(left: 5, right: 5, top: 5),
+    height: 200,
+    //width: MediaQuery.of(context).size.width,
+    child: InkWell(
+      onTap: (){
+
+         Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => DetailNotificationPage()));
+
+      },
+      splashColor: Colors.red,
+          child: Card(
+            //color: Color(0x80dde7ee),
+        //elevation: 5,
         child: Padding(
           padding: const EdgeInsets.all(13.0),
           child: Column(
@@ -38,7 +71,7 @@ Widget _NotificationTile(BuildContext context, String matter) {
                 children: <Widget>[
                   CircleAvatar(
                     radius: 20,
-                    backgroundImage: AssetImage("assets/images/3.jpg"),
+                    backgroundImage: AssetImage("assets/images/13.jpg"),
                   ),
                   SizedBox(
                     width: 12,

@@ -14,6 +14,9 @@ dependencies:
   line_awesome_flutter: ^1.0.1
   google_fonts: ^1.1.0
   store_redirect: ^1.0.2
+  ff_navigation_bar: ^0.1.5
+  titled_navigation_bar: ^4.1.0
+  
 
 
   cupertino_icons: ^0.1.3
