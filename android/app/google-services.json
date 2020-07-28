@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "485745126974",
+    "firebase_url": "https://campus-connect-df5fc.firebaseio.com",
+    "project_id": "campus-connect-df5fc",
+    "storage_bucket": "campus-connect-df5fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:485745126974:android:214094bdd6a6544c4f6b6f",
+        "android_client_info": {
+          "package_name": "com.example.Connected"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "485745126974-sutk9lvtm0i3kqa8mn5q60tsddl5pq2l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjbhhybw-n_Zgdzf5U97ml43lzoIjcyVU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "485745126974-sutk9lvtm0i3kqa8mn5q60tsddl5pq2l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -16,6 +16,8 @@ dependencies:
   store_redirect: ^1.0.2
   ff_navigation_bar: ^0.1.5
   titled_navigation_bar: ^4.1.0
+  cloud_firestore: ^0.13.7
+  firebase_auth: ^0.16.1
   
 
 
