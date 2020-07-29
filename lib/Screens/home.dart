@@ -1,3 +1,4 @@
+import 'package:Connected/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'list_of_pdf_screen.dart';
@@ -38,7 +39,7 @@ class Home extends StatelessWidget {
         slivers: <Widget>[
           SliverAppBar(
             // iconTheme: IconThemeData(color: Colors.white),
-            backgroundColor: Color(0xff2b2f77),
+            backgroundColor: AppColor.mainColor,
             // Color(
             // (0xff2b2f77),
             //),
@@ -55,7 +56,7 @@ class Home extends StatelessWidget {
 
             flexibleSpace: FlexibleSpaceBar(
               background: Image.asset(
-                'assets/vectorr.jpg',
+                'assets/images/vectorr.jpg',
                 fit: BoxFit.fill,
               ),
             ),
@@ -82,7 +83,7 @@ class Home extends StatelessWidget {
     return Card(
       // elevation: 0,
       margin: EdgeInsets.all(2),
-      color: Color(0xffdde7ee),
+      color: AppColor.tileColor,
 
       child: InkWell(
         splashColor: Colors.white,
@@ -95,7 +96,7 @@ class Home extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: CircleAvatar(
-                backgroundImage: AssetImage("assets/science.png"),
+                backgroundImage: AssetImage("assets/images/circle-cropped.png"),
                 radius: 25,
               ),
             ),

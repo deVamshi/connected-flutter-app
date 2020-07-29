@@ -18,8 +18,12 @@ dependencies:
   titled_navigation_bar: ^4.1.0
   cloud_firestore: ^0.13.7
   firebase_auth: ^0.16.1
-  
-
+  file_picker: ^1.13.0+1
+  firebase_storage: ^3.1.6
+  uuid: ^2.2.0
+  google_sign_in: ^4.5.1
+  dynamic_theme: ^1.0.0
+  flutter_phoenix: "^0.1.0"
 
   cupertino_icons: ^0.1.3
 
