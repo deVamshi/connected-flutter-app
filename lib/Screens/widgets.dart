@@ -112,37 +112,37 @@ Drawer buildDrawer(BuildContext bc) {
         //           ],
         //         ),
         //       )
-            //:
-             Container(
-                height: 150,
-                //color: Colors.black,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 10,
-                    ),
-                    CircleAvatar(
-                      radius: 30,
-                      backgroundColor: Colors.black,
-                      child: Text(
-                        "N",
-                        style: TextStyle(color: Colors.white, fontSize: 30),
-                      ),
-                    ),
-                    Text(
-                      "Notepedia",
-                      overflow: TextOverflow.ellipsis,
-                      style: GoogleFonts.lato(
-                        fontSize: 20,
-                      ),
-                    ),
-                  ],
+        //:
+        Container(
+          height: 150,
+          //color: Colors.black,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                height: 10,
+              ),
+              CircleAvatar(
+                radius: 30,
+                backgroundColor: Colors.black,
+                child: Text(
+                  "N",
+                  style: TextStyle(color: Colors.white, fontSize: 30),
                 ),
               ),
+              Text(
+                "Notepedia",
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.lato(
+                  fontSize: 20,
+                ),
+              ),
+            ],
+          ),
+        ),
         Divider(),
-        buildDrawerItem(bc, Icons.settings, "Settings"),
+        buildDrawerItem(bc, LineAwesomeIcons.wrench, "Settings"),
         // ListTile(
         //   onTap: () async {
         //     UserPrefs.isDark = true;
@@ -161,9 +161,10 @@ Drawer buildDrawer(BuildContext bc) {
         //     style: TextStyle(color: AppColor.textColor),
         //   ),
         // ),
-        Divider(),
+        // Divider(),
         buildDrawerItem(bc, LineAwesomeIcons.google_play, "Rate on Playstore"),
         buildDrawerItem(bc, LineAwesomeIcons.user_friends, "Invite friends"),
+        Divider(),
         buildDrawerItem(bc, LineAwesomeIcons.comments, "Contact Us"),
         buildDrawerItem(bc, LineAwesomeIcons.file_contract, "Privacy Policy"),
       ],

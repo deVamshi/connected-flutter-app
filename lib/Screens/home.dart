@@ -86,7 +86,7 @@ class _HomeState extends State<Home> {
                           ),
                           Text(
                             "Favorites",
-                            style: GoogleFonts.lato(fontSize: 30),
+                            style: GoogleFonts.lato(fontSize: 25,fontWeight: FontWeight.bold),
                           ),
                         ],
                       )),
@@ -125,7 +125,8 @@ class _HomeState extends State<Home> {
                   Text(
                     "All",
                     style: GoogleFonts.lato(
-                      fontSize: 30,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
@@ -149,7 +150,7 @@ class _HomeState extends State<Home> {
   Widget _favoriteContainer(int index) {
     return Container(
       color: AppColor.bgColor,
-      margin: EdgeInsets.only(left: 5, right: 5),
+      margin: EdgeInsets.only(left: 8, right: 5),
       width: 180.0,
       child: Card(
         color: AppColor.tileColor,
@@ -173,7 +174,7 @@ class _HomeState extends State<Home> {
     String subjectName, // Color color
   ) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+      padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 2),
       child: Card(
         margin: EdgeInsets.all(2),
         color: AppColor.tileColor,
@@ -201,7 +202,8 @@ class _HomeState extends State<Home> {
                     textStyle: TextStyle(
                         color: Colors.black,
                         letterSpacing: 2,
-                        fontWeight: FontWeight.bold),
+                        fontWeight: FontWeight.bold
+                        ),
                   ),
                 ),
               ),

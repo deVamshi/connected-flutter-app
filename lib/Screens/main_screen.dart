@@ -1,5 +1,3 @@
-
-
 import 'package:Connected/colors.dart';
 import 'package:Connected/constants.dart';
 import 'package:flutter/foundation.dart';
@@ -22,21 +20,14 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
-  //PageController _pageController;
+  PageController _pageController;
   var screens = [Home(), Downloads(), Notifications()];
-
-  handleOnTap(int tappedIndex) {
-    // _pageController.animateToPage(tappedIndex,
-    //     duration: Duration(milliseconds: 250), curve: Curves.easeInOut);
-    setState(() {
-      this._currentIndex = tappedIndex;
-    });
-  }
+  bool hasNotifs = true;
 
   @override
   void initState() {
     super.initState();
-    //_pageController = PageController();
+    _pageController = PageController();
     // googleSignIn.onCurrentUserChanged.listen((account) {
     //   handleSignIn(account);
     //   print("google sign in on current user change listerner");
@@ -50,7 +41,6 @@ class _MainScreenState extends State<MainScreen> {
     //   print("error occured: ${err.message}");
     // });
   }
-
 
   // handleSignIn(GoogleSignInAccount account) {
   //   if (account != null) {
@@ -81,7 +71,8 @@ class _MainScreenState extends State<MainScreen> {
         //centerTitle: true,
         title: Text(
           title,
-          style: GoogleFonts.lato(letterSpacing: 2, color: AppColor.headerColor),
+          style:
+              GoogleFonts.lato(letterSpacing: 2, color: AppColor.headerColor),
         ),
         actions: <Widget>[
           IconButton(
@@ -90,45 +81,84 @@ class _MainScreenState extends State<MainScreen> {
             },
             icon: Icon(LineAwesomeIcons.filter),
           ),
-         
         ],
       );
     }
 
+    handleOnPageChanged(int index) {
+      setState(() {
+        this._currentIndex = index;
+      });
+    }
+
+    handleOnTap(int tappedIndex) {
+      _pageController.jumpToPage(tappedIndex);
+
+      if (hasNotifs && tappedIndex == 2) {
+        this.hasNotifs = false;
+      }
+
+      // _pageController.animateToPage(tappedIndex,
+      //     duration: Duration(milliseconds: 250), curve: Curves.easeInSine);
+      setState(() {
+        this._currentIndex = tappedIndex;
+      });
+    }
+
     return Scaffold(
       // backgroundColor: AppColor.mainColor,
-      appBar: _buildMainPageAppBar("Notepedia"),
+      appBar: _currentIndex == 0
+          ? _buildMainPageAppBar("Notepedia")
+          : _currentIndex == 1
+              ? buildAppBar("Downloaded files")
+              : buildAppBar("Notifications"),
+      //  if(_currentIndex == 0) {
+      // return  _buildMainPageAppBar("Notepedia");
+
+      // }else if(_currentIndex == 1){
+      //   return buildAppBar("Downloads")
+      // } else {
+      //   return buildAppBar("Notifications");
+
+      // }
+      //  _currentIndex != 1
+      //     ? _buildMainPageAppBar("Notepedia")
+      //     : _currentIndex != 2
+      //         ? buildAppBar("Downloads")
+      //         : buildAppBar("Notifications"),
       drawer: buildDrawer(context),
 
-      body: FadeIndexedStack(
-        //this is optional
-        // duration: Duration(seconds: 1),
-        children: screens.map((t) => t).toList(),
-        index: _currentIndex,
-      ),
+      body:
+          //  FadeIndexedStack(
+          //   //this is optional
+          //   // duration: Duration(seconds: 1),
+          //   children: screens.map((t) => t).toList(),
+          //   index: _currentIndex,
+          // ),
 
-      //  PageView(
-      //   controller: _pageController,
-      //   onPageChanged: hadleOnPageChanged,
-      //   physics: NeverScrollableScrollPhysics(),
-      //   children: <Widget>[
-      //     Home(),
-      //     Downloads(),
-      //     Notifications(),
-      //     //Profile(),
-      //   ],
-      // ),
+          PageView(
+        controller: _pageController,
+        onPageChanged: handleOnPageChanged,
+        physics: NeverScrollableScrollPhysics(),
+        children: <Widget>[
+          Home(),
+          Downloads(),
+          Notifications(),
+          //Profile(),
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: handleOnTap,
-        selectedItemColor: AppColor.activeColor,
+        selectedItemColor: Colors.black,
+        // Color(0xff2b2f77),
         unselectedItemColor: AppColor.inActiveColor,
         backgroundColor: Colors.white,
-        elevation: 0.0,
+        elevation: 10,
         items: [
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.apps,
+              _currentIndex == 0 ? Icons.home : LineAwesomeIcons.home,
             ),
             title: Text(
               "Home",
@@ -140,7 +170,10 @@ class _MainScreenState extends State<MainScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.arrow_downward,
+              _currentIndex == 1
+                  ? Icons.file_download
+                  : LineAwesomeIcons.download,
+              // Icons.arrow_downward,
             ),
             title: Text(
               "Downloads",
@@ -151,7 +184,16 @@ class _MainScreenState extends State<MainScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.notifications_none,
+              hasNotifs
+                  ? Icons.notifications_active
+                  : _currentIndex == 2
+                      ? Icons.notifications
+                      : Icons.notifications_none,
+              color: hasNotifs
+                  ? Colors.red
+                  : _currentIndex == 2
+                      ? AppColor.activeColor
+                      : AppColor.inActiveColor,
             ),
             title: Text(
               "Notifications",
@@ -200,8 +242,12 @@ class _MainScreenState extends State<MainScreen> {
                     height: 10,
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-                    child: Text("Select your branch",style: GoogleFonts.lato(fontSize: 20,color: Colors.red),),),
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    child: Text(
+                      "Select your branch",
+                      style: GoogleFonts.lato(fontSize: 20, color: Colors.red),
+                    ),
+                  ),
                   customBranchTile(context),
                   customBranchTile(context),
                   customBranchTile(context),
@@ -214,7 +260,6 @@ class _MainScreenState extends State<MainScreen> {
                   customBranchTile(context),
                   customBranchTile(context),
                   customBranchTile(context),
-                
                 ],
               ),
             ),

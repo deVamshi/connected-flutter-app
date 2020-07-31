@@ -24,6 +24,7 @@ dependencies:
   google_sign_in: ^4.5.1
   dynamic_theme: ^1.0.0
   flutter_phoenix: "^0.1.0"
+  # page_transition: ^1.1.6
 
   cupertino_icons: ^0.1.3
 
