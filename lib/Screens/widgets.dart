@@ -76,8 +76,44 @@ Drawer buildDrawer(BuildContext bc) {
   return Drawer(
     child: ListView(
       children: <Widget>[
-        Contants.isAuth
-            ? Container(
+        // Contants.isAuth
+        //     ? Container(
+        //         height: 150,
+        //         //color: Colors.black,
+        //         child: Column(
+        //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //           crossAxisAlignment: CrossAxisAlignment.center,
+        //           children: <Widget>[
+        //             SizedBox(
+        //               height: 10,
+        //             ),
+        //             CircleAvatar(
+        //               radius: 30,
+        //               backgroundColor: Color(0xff2b2f77),
+        //               child: Text(
+        //                 "V",
+        //                 style: TextStyle(color: Colors.white, fontSize: 30),
+        //               ),
+        //             ),
+        //             Text(
+        //               "Vamshidhar",
+        //               overflow: TextOverflow.ellipsis,
+        //               style: GoogleFonts.lato(
+        //                 fontSize: 20,
+        //               ),
+        //             ),
+        //             Text(
+        //               "telugvamshi77@gmail.com",
+        //               overflow: TextOverflow.ellipsis,
+        //               style: GoogleFonts.lato(
+        //                 fontSize: 10,
+        //               ),
+        //             ),
+        //           ],
+        //         ),
+        //       )
+            //:
+             Container(
                 height: 150,
                 //color: Colors.black,
                 child: Column(
@@ -89,42 +125,7 @@ Drawer buildDrawer(BuildContext bc) {
                     ),
                     CircleAvatar(
                       radius: 30,
-                      backgroundColor: Color(0xff2b2f77),
-                      child: Text(
-                        "V",
-                        style: TextStyle(color: Colors.white, fontSize: 30),
-                      ),
-                    ),
-                    Text(
-                      "Vamshidhar",
-                      overflow: TextOverflow.ellipsis,
-                      style: GoogleFonts.lato(
-                        fontSize: 20,
-                      ),
-                    ),
-                    Text(
-                      "telugvamshi77@gmail.com",
-                      overflow: TextOverflow.ellipsis,
-                      style: GoogleFonts.lato(
-                        fontSize: 10,
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            : Container(
-                height: 150,
-                //color: Colors.black,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 10,
-                    ),
-                    CircleAvatar(
-                      radius: 30,
-                      backgroundColor: Color(0xff2b2f77),
+                      backgroundColor: Colors.black,
                       child: Text(
                         "N",
                         style: TextStyle(color: Colors.white, fontSize: 30),
@@ -141,7 +142,7 @@ Drawer buildDrawer(BuildContext bc) {
                 ),
               ),
         Divider(),
-        buildDrawerItem(bc, LineAwesomeIcons.user, "Profile"),
+        buildDrawerItem(bc, Icons.settings, "Settings"),
         // ListTile(
         //   onTap: () async {
         //     UserPrefs.isDark = true;
@@ -252,7 +253,15 @@ customBranchTile(BuildContext bc) {
   );
 }
 
-
+buildLinearProgress() {
+  return Container(
+    // padding: EdgeInsets.only(bottom: 20),
+    child: LinearProgressIndicator(
+      valueColor: AlwaysStoppedAnimation(AppColor.mainColor),
+      backgroundColor: Colors.transparent,
+    ),
+  );
+}
 
 class MyBehavior extends ScrollBehavior {
   @override

@@ -2,7 +2,6 @@ import 'package:Connected/Screens/list_of_pdf_screen.dart';
 import 'package:Connected/Screens/main_screen.dart';
 import 'package:Connected/Screens/upload_screen.dart';
 import 'package:flutter/material.dart';
-
 import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'userPrefs.dart';

@@ -52,21 +52,21 @@ class _MainScreenState extends State<MainScreen> {
   }
 
 
-  handleSignIn(GoogleSignInAccount account) {
-    if (account != null) {
-      print("user signed in: $account.");
-      setState(() {
-        Contants.isAuth = true;
-      });
-      print(account.displayName);
-      print("the value of auth is ${Contants.isAuth}");
-    } else {
-      setState(() {
-        Contants.isAuth = false;
-      });
-      print("the value of auth is ${Contants.isAuth}");
-    }
-  }
+  // handleSignIn(GoogleSignInAccount account) {
+  //   if (account != null) {
+  //     print("user signed in: $account.");
+  //     setState(() {
+  //       Contants.isAuth = true;
+  //     });
+  //     print(account.displayName);
+  //     print("the value of auth is ${Contants.isAuth}");
+  //   } else {
+  //     setState(() {
+  //       Contants.isAuth = false;
+  //     });
+  //     print("the value of auth is ${Contants.isAuth}");
+  //   }
+  // }
 
   //builds widgets
 
@@ -96,6 +96,7 @@ class _MainScreenState extends State<MainScreen> {
     }
 
     return Scaffold(
+      // backgroundColor: AppColor.mainColor,
       appBar: _buildMainPageAppBar("Notepedia"),
       drawer: buildDrawer(context),
 
