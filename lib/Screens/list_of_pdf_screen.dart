@@ -1,11 +1,12 @@
 import 'package:Connected/DatabaseMethods/auth.dart';
 import 'package:Connected/Screens/upload_screen.dart';
 import 'package:Connected/colors.dart';
-import 'package:Connected/constants.dart';
+// import 'package:Connected/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'widgets.dart';
+import 'package:Connected/colors.dart';
 
 class ListOfPdf extends StatefulWidget {
   @override
@@ -19,11 +20,11 @@ class _ListOfPdfState extends State<ListOfPdf> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.bgColor,
+      backgroundColor: NewColors.scaffoldBgColor,
       appBar: buildAppBar("Python"),
       body: ScrollConfiguration(
         behavior: MyBehavior(),
-              child: ListView.builder(
+        child: ListView.builder(
           itemCount: 20,
           itemBuilder: (context, index) {
             return buildListTileForPdf(context);
@@ -38,10 +39,10 @@ class _ListOfPdfState extends State<ListOfPdf> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColor.mainColor,
+        backgroundColor: NewColors.primaryColor,
         child: Icon(
           LineAwesomeIcons.plus,
-          color: AppColor.headerColor,
+          color: NewColors.appHeaderColor,
         ),
         onPressed: () {
           Navigator.push(

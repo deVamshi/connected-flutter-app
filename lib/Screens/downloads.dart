@@ -1,8 +1,11 @@
 import 'package:Connected/Screens/widgets.dart';
 import 'package:Connected/colors.dart';
+import 'package:Connected/userPrefs.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:Connected/hive_boxes.dart';
 
 class Downloads extends StatefulWidget {
   @override
@@ -45,54 +48,48 @@ class _DownloadsState extends State<Downloads> {
   }
 
   _buildListViewForDownloadedFile() {
-    return Scaffold(
-      backgroundColor: AppColor.bgColor,
-      body: Theme(
-        data: Theme.of(context).copyWith(accentColor: Colors.black),
-        child: ListView.separated(
-          itemCount: downloadedFiles.length,
-          separatorBuilder: (_, index) {
-            return Divider();
+    return
+        // Scaffold(
+        // appBar: buildAppBar("Downloads"),
+        // backgroundColor: Colors.grey[900],
+        // body:
+        ListView.separated(
+      itemCount: downloadedFiles.length,
+      separatorBuilder: (_, index) {
+        return Divider();
+      },
+      itemBuilder: (_, index) {
+        return ListTile(
+          onTap: () {
+            print("implement show pdf functionn");
           },
-          itemBuilder: (_, index) {
-            return ListTile(
-              onTap: () {
-                print("implement show pdf functionn");
-              },
-              leading: Icon(
-                LineAwesomeIcons.pdf_file,
-                color: Colors.red,
-              ),
-              trailing: PopupMenuButton<String>(
-                onSelected: (value) {
-                  print("implementing delete function");
-                },
-                itemBuilder: (_) {
-                  return [
-                    PopupMenuItem(
-                      child: Text("Delete from downloads"),
-                      value: "delete",
-                    )
-                  ];
-                },
-              ),
-              // IconButton(
-              //     icon: Icon(
-              //       Icons.more_vert,
-              //     ),
-              //     onPressed: () {
-              //       PopupMenuButton()
+          leading: Icon(
+            LineAwesomeIcons.pdf_file,
+            color: Colors.red,
+            size: 25,
+          ),
+          trailing: PopupMenuButton<String>(
+            // color: Colors.grey[200],
+            onSelected: (value) {},
 
-              //     }),
-              title: Text(
-                "${downloadedFiles[index]}",
-                style: GoogleFonts.lato(),
-                overflow: TextOverflow.ellipsis,
-              ),
-            );
-          },
-        ),
-      ),
+            itemBuilder: (_) {
+              return [
+                PopupMenuItem(
+                  child: Text("Delete from downloads"),
+                  value: "delete",
+                )
+              ];
+            },
+          ),
+          title: Text(
+            "${downloadedFiles[index]}",
+            style:
+                GoogleFonts.lato(color: NewColors.downloadsPageTileTextColor),
+            overflow: TextOverflow.ellipsis,
+          ),
+        );
+      },
     );
+    // );
   }
 }

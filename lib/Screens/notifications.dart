@@ -13,7 +13,6 @@ class Notifications extends StatefulWidget {
 
 class _NotificationsState extends State<Notifications> {
   bool noNotifs = true;
-
   List<String> notifications = [
     "Tejesh and 56 others found your pdf file useful.",
     "Tejesh found your pdf usefull.",
@@ -26,53 +25,38 @@ class _NotificationsState extends State<Notifications> {
   ];
 
   buildnotificationPage() {
-    return Scaffold(
-        backgroundColor: AppColor.bgColor,
-        body: Theme(
-          data: Theme.of(context).copyWith(accentColor: Colors.black),
-          child: ListView.separated(
-              itemBuilder: (_, index) => ListTile(
+    return ListView.separated(
+            itemBuilder: (_, index) => ListTile(
+                  trailing: Icon(
+                    LineAwesomeIcons.thumbs_up,
+                    color: NewColors.appHeaderColor,
+                  ),
                   leading: CircleAvatar(
-                    radius: 25,
+                    radius: 22,
                     backgroundColor: Colors.grey[200],
-                    backgroundImage: AssetImage("assets/images/18.jpg"),
+                    backgroundImage: AssetImage("assets/images/11.jpg"),
                   ),
                   title: RichText(
                     text: TextSpan(
                         text: "Tejesh",
-                        style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold),
+                        style: GoogleFonts.lato(
+                            fontSize: 15,
+                            color: NewColors.appHeaderColor,
+                            fontWeight: FontWeight.bold),
                         children: [
                           TextSpan(
-                            text: " and ",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal),
-                          ),
-                          TextSpan(
-                            text: "56 others",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          TextSpan(
-                            text: " liked your pdf.",
-                            style: TextStyle(
-                                color: Colors.black,
+                            text: " liked your pdf upload.",
+                            style: GoogleFonts.lato(
+                                fontSize: 15,
+                                color: NewColors.appHeaderColor,
                                 fontWeight: FontWeight.normal),
                           ),
                         ]),
-                  )
-
-                  // Text(
-                  //   "${notifications[index]}",
-                  //   // style: GoogleFonts.lato(),
-                  //   overflow: TextOverflow.clip,
-                  // ),
                   ),
-              separatorBuilder: (_, index) => Divider(),
-              itemCount: notifications.length),
-        ));
+                ),
+            separatorBuilder: (_, index) => Divider(),
+            itemCount: notifications.length);
+    // );
   }
 
   @override

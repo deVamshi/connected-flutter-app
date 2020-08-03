@@ -200,7 +200,9 @@ class _UploadScreenState extends State<UploadScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar("Upload file"),
-      body: fileSelected ? whenFileSelected() : whenNoFileSelectedScreen(),
+      body: fileSelected && selectedFile != null
+          ? whenFileSelected()
+          : whenNoFileSelectedScreen(),
       // Center(
       //   child: RaisedButton(
       //     child: Text("Upload"),
