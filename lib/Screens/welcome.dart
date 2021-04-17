@@ -18,7 +18,6 @@ class _WelcomeState extends State<Welcome> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 

@@ -1,16 +1,11 @@
 import 'package:Connected/DatabaseMethods/auth.dart';
 import 'package:Connected/Screens/widgets.dart';
 import 'package:Connected/colors.dart';
-import 'package:Connected/constants.dart';
-import 'package:Connected/hive_boxes.dart';
-import 'package:Connected/userPrefs.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:Connected/hive_boxes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'JoinScreen.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -18,20 +13,13 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  String username = "Vamshidhar Telugu";
-  String rollNumber = "19121A04M2";
-  String institute = "Sree Vidyanikethan";
-  String stream = "Btech";
-  String branch = "ECE";
-  String year = "1";
-  String section = "D";
+
   String avatarPath = "assets/images/16.jpg";
 
   // bool isDark = false;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     // isDark = UserPrefs.isDark;
   }
@@ -63,7 +51,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
     return Scaffold(
-        backgroundColor: NewColors.scaffoldBgColor,
+        backgroundColor: Colors.grey[100],
+        // NewColors.scaffoldBgColor,
         // backgroundColor: Colors.grey[900],
         appBar: buildAppBar("Account"),
         body: ListView(
@@ -132,7 +121,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               padding: EdgeInsets.symmetric(horizontal: 10),
               height: 50,
               child: Card(
-                color: NewColors.appBarColor,
+                color: NewColors.homePageTileColor,
                 child: InkWell(
                   onTap: () {
                     signOutGoogle().whenComplete(() async {
@@ -157,7 +146,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           style:
                               GoogleFonts.lato(fontSize: 18, color: Colors.red),
                         ),
-                      )),
+                      ),),
                 ),
               ),
             ),

@@ -19,7 +19,6 @@ getLogInState() async {
     UserPrefs.isDark = true;
   }
 }
-
 // getLogInStateHiveBox() async {
 //   HiveBoxes.userPrefsHiveBox = Hive.box<bool>("USERPREFS");
 //   bool result = HiveBoxes.userPrefsHiveBox.get("isAuth");
@@ -42,7 +41,6 @@ void main() async {
   // await Hive.openBox<bool>("USERPREFS");
   // await getLogInStateHiveBox();
   await getLogInState();
-
   runApp(
     MyApp(),
   );
@@ -54,11 +52,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'NotePedia',
       theme: ThemeData(
-        // canvasColor: Colors.grey[800],
         accentColor: Colors.black,
       ),
       home: Welcome(),
-      // MainScreen(),
     );
   }
 }
+
+

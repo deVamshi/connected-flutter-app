@@ -17,14 +17,15 @@ class AppColor {
 }
 
 class NewColors {
-  static final primaryColor = Colors.grey[800];
-  static final appBarColor = Colors.grey[800];
-  static final scaffoldBgColor = Colors.grey[200];
-  static const appHeaderColor = Colors.white;
+  static final primaryColor = Colors.grey[850];
+  static final appBarColor = Colors.grey[850];
+  static final scaffoldBgColor = Colors.grey[300];
+  static const appHeaderColor = Colors.black;
   static const bottomBarColor = Colors.white;
   static const bottomBarTextColor = Colors.black;
   static const bottomBarUnSelectedTextColor = Colors.grey;
-  static const homePageTileColor = Color(0xffdde7ee);
+  static const homePageTileColor = Colors.white;
+  // Color(0xffdde7ee);
   static const homePageTileTextColor = Colors.black;
   static const downloadsPageTileColor = Colors.white;
   static const downloadsPageTileTextColor = Colors.black;

@@ -3,28 +3,30 @@ import 'package:Connected/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:store_redirect/store_redirect.dart';
+// import 'package:url_launcher/url_launcher.dart';
+// import 'package:line_awesome_icons/line_awesome_icons.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 AppBar buildAppBar(String title) {
   return AppBar(
-    iconTheme: IconThemeData(color: NewColors.appHeaderColor),
-    backgroundColor: NewColors.appBarColor,
-    // blue color 0xff2b2f77
-    // elevation: 0.0,
+    iconTheme: IconThemeData(color: Colors.white),
+    // backgroundColor: NewColors.appBarColor,
+    backgroundColor: Colors.grey[900],
+    //  Color(0xff2b2f77),
+    // elevation: 0.0
     //centerTitle: true,
     title: Text(
       title,
-      style:
-          GoogleFonts.lato(letterSpacing: 1, color: NewColors.appHeaderColor),
+      style: GoogleFonts.lato(letterSpacing: 1, color: Colors.white),
     ),
   );
 }
 
-buildDrawerItem(BuildContext bc, IconData iconData, String title) {
+ListTile buildDrawerItem(BuildContext bc, IconData iconData, String title) {
   return ListTile(
-    onTap: () {
-      if (iconData == LineAwesomeIcons.google_play) {
+    onTap: () async {
+      if (iconData == LineAwesomeIcons.google_wallet) {
         StoreRedirect.redirect(androidAppId: "com.btechbuddy.notemaster");
       }
       if (iconData == LineAwesomeIcons.user) {
@@ -35,6 +37,17 @@ buildDrawerItem(BuildContext bc, IconData iconData, String title) {
             builder: (context) => ProfileScreen(),
           ),
         );
+      }
+      if (iconData == LineAwesomeIcons.file) {
+        String url =
+            "https://sites.google.com/view/privacypolicy-notepedia/home";
+        Navigator.pop(bc);
+        // if(await canLaunch(url)) {
+        //   launch(url);
+        // } else{
+        //   print("cannot launch $url");
+        // }
+
       }
     },
     leading: Icon(
@@ -120,8 +133,9 @@ Drawer buildDrawer(BuildContext bc) {
         //     },
         //   ),
         // ),
-        buildDrawerItem(bc, LineAwesomeIcons.google_play, "Rate on Playstore"),
-        buildDrawerItem(bc, LineAwesomeIcons.user_friends, "Invite friends"),
+        buildDrawerItem(
+            bc, LineAwesomeIcons.google_play, "Rate on Playstore"),
+        buildDrawerItem(bc, LineAwesomeIcons.user_plus, "Invite friends"),
         Divider(),
         buildDrawerItem(bc, LineAwesomeIcons.comments, "Contact Us"),
         buildDrawerItem(bc, LineAwesomeIcons.file_contract, "Privacy Policy"),
@@ -130,7 +144,7 @@ Drawer buildDrawer(BuildContext bc) {
   );
 }
 
-buildEmptyScreen(IconData iconData, String text) {
+Center buildEmptyScreen(IconData iconData, String text) {
   return Center(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -154,12 +168,12 @@ buildEmptyScreen(IconData iconData, String text) {
   );
 }
 
-buildCustomProfileTile(IconData iconData, String value) {
+Container buildCustomProfileTile(IconData iconData, String value) {
   return Container(
     padding: EdgeInsets.symmetric(horizontal: 10),
     height: 60,
     child: Card(
-      color: NewColors.appBarColor,
+      color: NewColors.homePageTileColor,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(
@@ -212,7 +226,7 @@ buildCustomProfileTile(IconData iconData, String value) {
 //   );
 // }
 
-buildLinearProgress() {
+Container buildLinearProgress() {
   return Container(
     // padding: EdgeInsets.only(bottom: 20),
     child: LinearProgressIndicator(

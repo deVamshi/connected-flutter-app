@@ -1,5 +1,5 @@
 import 'package:Connected/colors.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:line_awesome_icons/line_awesome_icons.dart';
 
 import 'widgets.dart';
 import 'package:flutter/material.dart';

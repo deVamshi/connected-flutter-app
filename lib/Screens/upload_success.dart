@@ -3,7 +3,7 @@ import 'package:Connected/Screens/widgets.dart';
 import 'package:Connected/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:line_awesome_icons/line_awesome_icons.dart';
 
 class UploadSuccess extends StatelessWidget {
   @override
@@ -43,9 +43,9 @@ class UploadSuccess extends StatelessWidget {
               child: RaisedButton(
                 child: Text(
                   "Done",
-                  style: GoogleFonts.lato(color: AppColor.headerColor),
+                  style: GoogleFonts.lato(color: Colors.white),
                 ),
-                color: AppColor.mainColor,
+                color: NewColors.appBarColor,
                 onPressed: () => Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(

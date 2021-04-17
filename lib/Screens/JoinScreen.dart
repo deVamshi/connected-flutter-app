@@ -1,16 +1,13 @@
 import 'package:Connected/DatabaseMethods/auth.dart';
 import 'package:Connected/Screens/main_screen.dart';
 import 'package:Connected/colors.dart';
-import 'package:Connected/hive_boxes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:line_awesome_icons/line_awesome_icons.dart';
 
 class JoinScreen extends StatelessWidget {
   bool _working = false;
-
   setLogInState() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool logInState = prefs.getBool("isAuth");
@@ -101,7 +98,7 @@ class JoinScreen extends StatelessWidget {
                     Hero(
                       tag: "appIcon",
                       child: Icon(
-                        LineAwesomeIcons.atom,
+                        LineAwesomeIcons.automobile,
                         size: 180,
                         color: Colors.black,
                       ),

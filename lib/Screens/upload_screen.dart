@@ -6,7 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:io';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+
+import 'package:line_awesome_icons/line_awesome_icons.dart';
+
+
 
 class UploadScreen extends StatefulWidget {
   @override
@@ -72,7 +75,7 @@ class _UploadScreenState extends State<UploadScreen> {
             //   height: 50,
             // ),
             Icon(
-              LineAwesomeIcons.file_upload,
+              LineAwesomeIcons.upload,
               color: Colors.grey,
               size: 150,
             ),
@@ -91,12 +94,12 @@ class _UploadScreenState extends State<UploadScreen> {
               height: 20,
             ),
             Container(
-              width: 200,
+              width: 150,
               child: RaisedButton(
-                color: AppColor.mainColor,
+                color: NewColors.appBarColor,
                 child: Text(
                   "Select",
-                  style: GoogleFonts.lato(color: AppColor.headerColor),
+                  style: GoogleFonts.lato(color: Colors.white),
                 ),
                 onPressed: () {
                   if (!selecting) {
@@ -115,7 +118,6 @@ class _UploadScreenState extends State<UploadScreen> {
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
-
         if (!currentFocus.hasPrimaryFocus) {
           currentFocus.unfocus();
         }
@@ -131,7 +133,7 @@ class _UploadScreenState extends State<UploadScreen> {
               height: 20,
             ),
             Icon(
-              LineAwesomeIcons.pdf_file_1,
+              LineAwesomeIcons.file_pdf_o,
               size: 150,
               color: Colors.red,
             ),
@@ -150,8 +152,8 @@ class _UploadScreenState extends State<UploadScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Theme(
                 data: new ThemeData(
-                  primaryColor: AppColor.mainColor,
-                  primaryColorDark: AppColor.mainColor,
+                  primaryColor: NewColors.appBarColor,
+                  primaryColorDark: NewColors.appBarColor,
                 ),
                 child: TextField(
                   cursorColor: Colors.black,
@@ -183,10 +185,10 @@ class _UploadScreenState extends State<UploadScreen> {
                 onPressed: () {
                   handleUploading();
                 },
-                color: AppColor.mainColor,
+                color: NewColors.appBarColor,
                 child: Text(
                   "Upload",
-                  style: GoogleFonts.lato(color: AppColor.headerColor),
+                  style: GoogleFonts.lato(color: Colors.white),
                 ),
               ),
             ),

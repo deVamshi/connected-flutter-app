@@ -1,20 +1,13 @@
-import 'package:Connected/Screens/JoinScreen.dart';
-import 'package:Connected/Screens/profile.dart';
 import 'package:Connected/colors.dart';
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:titled_navigation_bar/titled_navigation_bar.dart';
 import 'home.dart';
 import 'notifications.dart';
 import 'downloads.dart';
 import 'widgets.dart';
-import 'package:Connected/DatabaseMethods/auth.dart';
+import 'bunk_manager.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:Connected/hive_boxes.dart';
-import 'package:ff_navigation_bar/ff_navigation_bar.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -27,7 +20,7 @@ class _MainScreenState extends State<MainScreen> {
   var screens = [
     Home(),
     Downloads(),
-    Notifications(),
+    BunkManager(),
   ];
   // bool hasNotifs = true;
 
@@ -46,6 +39,7 @@ class _MainScreenState extends State<MainScreen> {
     bool logInStateafter = prefs.getBool("isAuth");
     print("logInStateafter $logInStateafter");
   }
+
   // setLogInStateHiveBox() async {
   //   if (HiveBoxes.userPrefsHiveBox.isOpen) {
   //     HiveBoxes.userPrefsHiveBox.put("isAuth", false);
@@ -61,37 +55,12 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     AppBar _buildMainPageAppBar(BuildContext bc, String title) {
       return AppBar(
-        iconTheme: IconThemeData(color: NewColors.appHeaderColor),
-        backgroundColor: NewColors.appBarColor,
-        // blue color 0xff2b2f77
-        elevation: 0.0,
-        //centerTitle: true,
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: Colors.grey[850],
         title: Text(
           title,
-          style: GoogleFonts.lato(
-              letterSpacing: 2, color: NewColors.appHeaderColor),
+          style: GoogleFonts.lato(letterSpacing: 2, color: Colors.white),
         ),
-        //   actions: <Widget>[
-        //     IconButton(
-        //       onPressed: () async {
-        //         // // _openPopup(context);
-        //         // signOutGoogle().whenComplete(() async {
-        //         //   // await setLogInStateHiveBox();
-        //         //   await setLogInState();
-        //         //   print("compledted");
-        //         //   // setLogInState();
-        //         //   Navigator.of(bc).pushReplacement(
-        //         //     MaterialPageRoute(
-        //         //       builder: (context) {
-        //         //         return JoinScreen();
-        //         //       },
-        //         //     ),
-        //         //   );
-        //         // }).catchError((e) => print(e));
-        //       },
-        //       icon: Icon(LineAwesomeIcons.filter),
-        //     ),
-        //   ],
       );
     }
 
@@ -109,187 +78,187 @@ class _MainScreenState extends State<MainScreen> {
       });
     }
 
-    return Scaffold(
-      drawer: buildDrawer(context),
-      backgroundColor: Colors.white,
-      // NewColors.scaffoldBgColor,
-      appBar: _currentIndex == 0
-          ? _buildMainPageAppBar(context, "Notepedia")
-          : _currentIndex == 1
-              ? buildAppBar("Downloads")
-              : buildAppBar("Inbox"),
-      // : buildAppBar("Profile"),
+    return SafeArea(
+      child: Scaffold(
+        drawer: buildDrawer(context),
+        backgroundColor: Colors.white,
+        //  _currentIndex == 0 ? Colors.white : Colors.white,
+        // // NewColors.scaffoldBgColor,
+        appBar: _currentIndex == 0
+            ? null
+            : _currentIndex == 1
+                ? buildAppBar("Downloads")
+                : buildAppBar("Bunk Manager"),
 
-      // drawer: buildDrawer(context),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {},
-      //   backgroundColor: Color(0xffe43f5a),
-      //   child: Icon(LineAwesomeIcons.plus),
-      // ),
-      body: screens[_currentIndex],
-      //  FadeIndexedStack(
-      //   //this is optional
-      //   // duration: Duration(seconds: 1),
-      //   children: screens.map((t) => t).toList(),
-      //   index: _currentIndex,
-      // ),
-      //     PageView(
-      //   controller: _pageController,
-      //   onPageChanged: handleOnPageChanged,
-      //   physics: NeverScrollableScrollPhysics(),
-      //   children: <Widget>[
-      //     Home(),
-      //     Downloads(),
-      //     Notifications(),
-      //     ProfileScreen(),
-      //   ],
-      // ),
-      bottomNavigationBar: //
-          BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            this._currentIndex = index;
-          });
-        },
-        selectedItemColor: NewColors.bottomBarTextColor,
-        // Color(0xff2b2f77),
-        unselectedItemColor: NewColors.bottomBarUnSelectedTextColor,
-        backgroundColor: NewColors.bottomBarColor,
-        // elevation: 10,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              _currentIndex == 0 ? Icons.home : LineAwesomeIcons.home,
-            ),
-            title: Text(
-              "Home",
-              style: GoogleFonts.lato(
-                fontSize: 12,
-                // color: Colors.black,
+        // drawer: buildDrawer(context),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () {},
+        //   backgroundColor: Color(0xffe43f5a),
+        //   child: Icon(LineAwesomeIcons.plus),
+        // ),
+        body: screens[_currentIndex],
+        //  FadeIndexedStack(
+        //   //this is optional
+        //   // duration: Duration(seconds: 1),
+        //   children: screens.map((t) => t).toList(),
+        //   index: _currentIndex,
+        // ),
+        //     PageView(
+        //   controller: _pageController,
+        //   onPageChanged: handleOnPageChanged,
+        //   physics: NeverScrollableScrollPhysics(),
+        //   children: <Widget>[
+        //     Home(),
+        //     Downloads(),
+        //     Notifications(),
+        //     ProfileScreen(),
+        //   ],
+        // ),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () {
+        //     // getListOfPdfs();
+        //     dislikeFunc();
+        //   },
+        //   child: Icon(Icons.add),
+        // ),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          // elevation: 0.0,
+          onTap: (index) {
+            setState(() {
+              this._currentIndex = index;
+            });
+          },
+          selectedItemColor: NewColors.bottomBarTextColor,
+          // Color(0xff2b2f77),
+          unselectedItemColor: NewColors.bottomBarUnSelectedTextColor,
+          backgroundColor: NewColors.bottomBarColor,
+
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(LineAwesomeIcons.home),
+              title: Text(
+                "Home",
+                style: GoogleFonts.lato(
+                  fontSize: 12,
+                  // color: Colors.black,
+                ),
               ),
             ),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              _currentIndex == 1
-                  ? Icons.file_download
-                  : LineAwesomeIcons.download,
-              // Icons.arrow_downward,
-            ),
-            title: Text(
-              "Downloads",
-              style: GoogleFonts.lato(
-                fontSize: 12,
+            BottomNavigationBarItem(
+              icon: Icon(LineAwesomeIcons.arrow_down
+                  // Icons.arrow_downward,
+                  ),
+              title: Text(
+                "Downloads",
+                style: GoogleFonts.lato(
+                  fontSize: 12,
+                ),
               ),
             ),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              _currentIndex == 2
-                  ? Icons.notifications
-                  : Icons.notifications_none,
-            ),
-            title: Text(
-              "Inbox",
-              style: GoogleFonts.lato(
-                fontSize: 12,
+            BottomNavigationBarItem(
+              icon: Icon(LineAwesomeIcons.otter),
+              title: Text(
+                "Bunk Manager",
+                style: GoogleFonts.lato(
+                  fontSize: 12,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
+        //   BottomNavyBar(
+        //     selectedIndex: _currentIndex,
+        //     showElevation: true,
+        //     animationDuration: Duration(milliseconds: 500),
+        //     itemCornerRadius: 50,
+        //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //     backgroundColor: Colors.grey[800],
+        //     curve: Curves.easeIn,
+        //     onItemSelected: (index) {
+        //       // handleOnTap(index);
+        //       setState(() {
+        //         _currentIndex = index;
+        //       });
+        //       // _pageController.jumpToPage(index);
+        //       // _pageController.animateToPage(_currentIndex,
+        //       //     duration: Duration(milliseconds: 10), curve: Curves.easeInBack);
+        //     },
+        //     items: [
+        //       BottomNavyBarItem(
+        //         icon: Icon(LineAwesomeIcons.home),
+        //         title: Text('Home'),
+        //         activeColor: Colors.white,
+        //         inactiveColor: Colors.grey[500],
+        //         textAlign: TextAlign.center,
+        //       ),
+        //       BottomNavyBarItem(
+        //         icon: Icon(LineAwesomeIcons.download),
+        //         title: Text('Downloads'),
+        //         activeColor: Colors.white,
+        //         inactiveColor: Colors.grey[500],
+        //         textAlign: TextAlign.center,
+        //       ),
+        //       BottomNavyBarItem(
+        //         icon: Icon(LineAwesomeIcons.bell),
+        //         title: Text(
+        //           'Inbox',
+        //         ),
+        //         activeColor: Colors.white,
+        //         inactiveColor: Colors.grey[500],
+        //         textAlign: TextAlign.center,
+        //       ),
+        //       BottomNavyBarItem(
+        //         icon: Icon(LineAwesomeIcons.user),
+        //         title: Text('Account'),
+        //         activeColor: Colors.white,
+        //         inactiveColor: Colors.grey[500],
+        //         textAlign: TextAlign.center,
+        //       ),
+        //     ],
+        //   ),
+        // );
+        //     TitledBottomNavigationBar(
+        //   activeColor: Colors.white,
+        //   // Color(0xffe43f5a),
+        //   // indicatorColor: Colors.grey[850],
+        //   inactiveColor: Colors.grey[400],
+        //   inactiveStripColor: Colors.grey[850],
+        //   reverse: true,
+        //   currentIndex: _currentIndex,
+        //   curve: Curves.easeInBack,
+        //   onTap: (value) {
+        //     // print(value);
+        //     setState(() {
+        //       this._currentIndex = value;
+        //     });
+        //     // _pageController.animateToPage(value,
+        //     //     duration: Duration(milliseconds: 101), curve: Curves.easeInBack);
+        //   },
+        //   items: [
+        //     TitledNavigationBarItem(
+        //       backgroundColor: Colors.grey[800],
+        //       icon: LineAwesomeIcons.home,
+        //       title: Text("Home"),
+        //     ),
+        //     TitledNavigationBarItem(
+        //       backgroundColor: Colors.grey[800],
+        //       icon: LineAwesomeIcons.download,
+        //       title: Text("Downloads"),
+        //     ),
+        //     TitledNavigationBarItem(
+        //       backgroundColor: Colors.grey[800],
+        //       icon: LineAwesomeIcons.bell,
+        //       title: Text("Inbox"),
+        //     ),
+        //     // TitledNavigationBarItem(
+        //     //   backgroundColor: Colors.grey[800],
+        //     //   icon: LineAwesomeIcons.user,
+        //     //   title: Text("Account"),
+        //     // ),
+        //   ],
+        // ),
       ),
-      //   BottomNavyBar(
-      //     selectedIndex: _currentIndex,
-      //     showElevation: true,
-      //     animationDuration: Duration(milliseconds: 500),
-      //     itemCornerRadius: 50,
-      //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //     backgroundColor: Colors.grey[800],
-      //     curve: Curves.easeIn,
-      //     onItemSelected: (index) {
-      //       // handleOnTap(index);
-      //       setState(() {
-      //         _currentIndex = index;
-      //       });
-      //       // _pageController.jumpToPage(index);
-      //       // _pageController.animateToPage(_currentIndex,
-      //       //     duration: Duration(milliseconds: 10), curve: Curves.easeInBack);
-      //     },
-      //     items: [
-      //       BottomNavyBarItem(
-      //         icon: Icon(LineAwesomeIcons.home),
-      //         title: Text('Home'),
-      //         activeColor: Colors.white,
-      //         inactiveColor: Colors.grey[500],
-      //         textAlign: TextAlign.center,
-      //       ),
-      //       BottomNavyBarItem(
-      //         icon: Icon(LineAwesomeIcons.download),
-      //         title: Text('Downloads'),
-      //         activeColor: Colors.white,
-      //         inactiveColor: Colors.grey[500],
-      //         textAlign: TextAlign.center,
-      //       ),
-      //       BottomNavyBarItem(
-      //         icon: Icon(LineAwesomeIcons.bell),
-      //         title: Text(
-      //           'Inbox',
-      //         ),
-      //         activeColor: Colors.white,
-      //         inactiveColor: Colors.grey[500],
-      //         textAlign: TextAlign.center,
-      //       ),
-      //       BottomNavyBarItem(
-      //         icon: Icon(LineAwesomeIcons.user),
-      //         title: Text('Account'),
-      //         activeColor: Colors.white,
-      //         inactiveColor: Colors.grey[500],
-      //         textAlign: TextAlign.center,
-      //       ),
-      //     ],
-      //   ),
-      // );
-      //     TitledBottomNavigationBar(
-      //   activeColor: Colors.white,
-      //   // Color(0xffe43f5a),
-      //   // indicatorColor: Colors.grey[850],
-      //   inactiveColor: Colors.grey[400],
-      //   inactiveStripColor: Colors.grey[850],
-      //   reverse: true,
-      //   currentIndex: _currentIndex,
-      //   curve: Curves.easeInBack,
-      //   onTap: (value) {
-      //     // print(value);
-      //     setState(() {
-      //       this._currentIndex = value;
-      //     });
-      //     // _pageController.animateToPage(value,
-      //     //     duration: Duration(milliseconds: 101), curve: Curves.easeInBack);
-      //   },
-      //   items: [
-      //     TitledNavigationBarItem(
-      //       backgroundColor: Colors.grey[800],
-      //       icon: LineAwesomeIcons.home,
-      //       title: Text("Home"),
-      //     ),
-      //     TitledNavigationBarItem(
-      //       backgroundColor: Colors.grey[800],
-      //       icon: LineAwesomeIcons.download,
-      //       title: Text("Downloads"),
-      //     ),
-      //     TitledNavigationBarItem(
-      //       backgroundColor: Colors.grey[800],
-      //       icon: LineAwesomeIcons.bell,
-      //       title: Text("Inbox"),
-      //     ),
-      //     // TitledNavigationBarItem(
-      //     //   backgroundColor: Colors.grey[800],
-      //     //   icon: LineAwesomeIcons.user,
-      //     //   title: Text("Account"),
-      //     // ),
-      //   ],
-      // ),
     );
     // FFNavigationBar(
     //   theme: FFNavigationBarTheme(
